@@ -1,0 +1,55 @@
+version: '3'
+
+vars:
+  PREVIEW_PORT: 4173
+
+tasks:
+  default:
+    desc: Show available tasks
+    cmds:
+      - task --list
+    silent: true
+
+  dev:
+    desc: Start Slidev dev server
+    cmds:
+      - bun run dev
+
+  build:
+    desc: Build Slidev slides
+    cmds:
+      - bun run build
+
+  preview:
+    desc: Build and preview the generated slides
+    deps:
+      - build
+    cmds:
+      - python3 -m http.server {{.PREVIEW_PORT}} -d dist
+
+  export:
+    desc: Export slides
+    cmds:
+      - bun run export
+
+  white:dev:
+    desc: Start Slidev dev server in white mode
+    cmds:
+      - bun run dev
+
+  white:build:
+    desc: Build white mode slides
+    cmds:
+      - bun run build
+
+  white:preview:
+    desc: Build and preview white mode slides
+    deps:
+      - white:build
+    cmds:
+      - python3 -m http.server {{.PREVIEW_PORT}} -d dist
+
+  white:pdf:
+    desc: Export white mode slides to PDF
+    cmds:
+      - bun run export
