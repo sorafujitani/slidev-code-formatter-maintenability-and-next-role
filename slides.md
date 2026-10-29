@@ -43,6 +43,12 @@ title: 自己紹介
   github="sorafujitani"
   website="https://sorafujitani.me/"
   avatar="https://raw.githubusercontent.com/fs0414/imgs/main/fs0414_dot_image.png"
+  avatarWidth="200px"
+  avatarPosition="left-bottom"
+  leftOffset="0px"
+  secondaryImage="/images/wabi-profile.png"
+  secondaryImageAlt="wabiさんのプロフィールと、@sorafujitaniへの言及に矢印を添えたスクリーンショット"
+  secondaryImageWidth="500px"
   :items="[
     { icon: 'calendar', label: '2001 (25)' },
   ]"
@@ -57,7 +63,7 @@ layout: default
 class: text-center
 ---
 
-### Linter, Formatterをよく開発していて、<br/>Formatterはこのままでいいのか？と思っている
+### Linter, Formatterをよく開発している
 
 <CenteredImage
   src="/images/github-contributions.png"
@@ -65,27 +71,7 @@ class: text-center
   width="640px"
 />
 
----
-layout: center
-class: text-center
-title: これからの需要に対して、保守コストは割に合うのか？
----
-
-<GradientHeading>
-  これからの需要に対して、<br>
-  保守コストは割に合うのか？
-</GradientHeading>
-
-<div class="mt-8">
-
-code formatter の価値と責務を、改めて考えたい。
-
-</div>
-
-<!--
-今日の問いを先に置く。
-formatterの必要性、メンテナンスコスト、AIにとっての価値、責務を変える提案の順に話す。
--->
+<div class="mt-6 text-2xl font-bold" style="color: var(--color-accent)">Code Formatterって今のままでいいのか？と思っている</div>
 
 ---
 
@@ -101,7 +87,7 @@ formatterの必要性、メンテナンスコスト、AIにとっての価値、
 
 <div class="mt-4 text-sm">
 
-出典: <a href="https://prettier.io/docs/why-prettier.html">https://prettier.io/docs/why-prettier.html</a>
+<a href="https://prettier.io/docs/why-prettier.html">https://prettier.io/docs/why-prettier.html</a>
 
 </div>
 
@@ -112,56 +98,72 @@ Prettierの公式ドキュメントにある説明。
 -->
 
 ---
-
-# それは、これからも必要か
-
-コードを見ることは、以前と比べてどう変わっただろう。
-
-<TwoColumnLayout gap="2.5rem">
-  <template #left>
-    <ul>
-      <li>増えている</li>
-      <li>同じくらい</li>
-      <li>減っている</li>
-    </ul>
-  </template>
-  <template #right>
-    <p>人間がコードを見ることが減るなら、<br>
-    <strong>議論や意思決定を減らすツールの価値</strong>は<br>
-    どこにあるだろう。</p>
-  </template>
-</TwoColumnLayout>
-
-<!--
-原稿では「半分くらいはnotだと思う」と書いている。
-ここでの前提は「人間が見ることが減っているのであれば」という条件。
-コードを読む量が全員について減っている、と断定するものではない。
--->
-
----
-layout: center
-class: text-center
-title: メンテナンスコストが高い
+layout: default
+class: text-left
+title: ツールの価値はメンテナンスコストに見合うかどうか
 ---
 
-<GradientHeading>
-  code formatter は、<br>
-  メンテナンスコストが高い
-</GradientHeading>
+- Code Formatterは、<br><strong style="color: var(--color-accent)">メンテナンスコストが高い</strong>ツールだと考えている
+- コードを見ることが減っていくであろうこれから、<br><strong style="color: var(--color-accent)">ツールの価値はメンテナンスコストに見合うかどうか</strong>
 
-<div class="mt-8">
+<style scoped>
+li {
+  font-size: 1.5rem;
+  line-height: 1.65;
+  margin-bottom: 1.5rem;
+}
+</style>
 
-変更要求の頻度が高い。<br>
-不具合によって、ユーザーのコードを壊し得る。
+---
+
+<div class="maintenance-page">
+
+<div class="maintenance-label">メンテナンスコストが高い理由 · 1/2</div>
+
+# 不具合の影響が大きい
+
+**コードを書き換えるリスクのあるツール。**
+
+- 不具合によって、ユーザーのコードを暗黙的に壊し得る。
+- Git hookで自動実行されると、<br>不具合による変更に気づきにくいこともある。
 
 </div>
 
-<!--
-ここからはメンテナンスする側の話。
-原稿にある、変更要求の頻度と、不具合がユーザーのコードへ及ぼす影響の二つに着目する。
--->
+<style scoped>
+.maintenance-page {
+  width: 100%;
+  height: 100%;
+  padding-top: 1rem;
+}
+
+.maintenance-label {
+  color: var(--color-text-muted);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2.25rem;
+  line-height: 1.3;
+  margin-bottom: 1.5rem;
+}
+
+p, li {
+  font-size: 1.5rem;
+  line-height: 1.65;
+}
+
+li {
+  margin-bottom: 1rem;
+}
+</style>
 
 ---
+
+<div class="maintenance-page">
+
+<div class="maintenance-label">メンテナンスコストが高い理由 · 2/2</div>
 
 # 追従する対象が多い
 
@@ -172,262 +174,137 @@ title: メンテナンスコストが高い
 | Framework | latest、場合によってはnightlyへの対応 |
 | formatter自体 | 品質、パフォーマンス、optionの改善 |
 
+</div>
+
+<style scoped>
+.maintenance-page {
+  width: 100%;
+  height: 100%;
+  padding-top: 1rem;
+}
+
+.maintenance-label {
+  color: var(--color-text-muted);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2.25rem;
+  line-height: 1.3;
+  margin-bottom: 1.5rem;
+}
+
+table {
+  width: 100%;
+  font-size: 1.375rem;
+  line-height: 1.5;
+}
+
+th, td {
+  padding: 0.6rem 0.75rem;
+}
+
+th:first-child, td:first-child {
+  width: 32%;
+}
+</style>
+
 <!--
 外部の変化への対応と、formatterそのものの改善が並行して発生する。
 原稿では、latestや場合によってはnightlyに対しても、不具合のない状態を求められる点を挙げている。
 -->
 
 ---
-layout: center
-class: text-center
-title: 外部との依存を管理しても限界がある
----
-
-<GradientHeading>
-  外部との依存を管理しても、<br>
-  保守コストの削減には限界がある
-</GradientHeading>
-
-<!--
-依存の管理を工夫することだけで、追従の必要性がなくなるわけではない、という問題意識。
-ここでAI時代にformatterが提供する価値へ話を戻す。
--->
-
----
-layout: center
-class: text-center
-title: AIにとって、コードが整形されている価値とは？
----
-
-<GradientHeading>
-  AIにとって、<br>
-  コードが整形されている価値とは？
-</GradientHeading>
-
-<!--
-人間にとっての読みやすさから、AIがコードを生成・編集する場面へ視点を移す。
-以下のtool callは、原稿に掲載した編集の例。
-すべてのモデル・編集ツールが同じ形式を使うという説明ではない。
--->
-
----
 
 # LLMが出すコードは、一定の整形がされている
 
-編集ツールへの呼び出しにも、`oldText` と `newText` が含まれる。
+LLMは、改行やインデントを含むコードを文字列として出力する。
 
-<div class="code-compact code-tight">
-
-<div class="code-caption">原稿の tool call から、1件の edit を抜粋</div>
+<div class="code-tight edit-example">
 
 ```json
-{
-  "oldText": "func TestClassicCacheWarmDoesNotReadBodies(t *testing.T) {",
-  "newText": "func TestClassicCacheWarmReadsOnlyKeys(t *testing.T) {"
-}
+"edits": [
+  {
+    "oldText": "function greet() {}",
+    "newText": "function greet() {\n\tconsole.log('Hello');\n}"
+  }
+]
 ```
 
 </div>
 
 <div class="mt-8">
 
-**Modelは、置き換え後のコードを文字列として出力している。**
+`\n` は改行、`\t` はタブ（インデント）
 
 </div>
 
+<style scoped>
+.edit-example {
+  --slidev-code-font-size: 18px;
+  --slidev-code-line-height: 28px;
+}
+
+.edit-example :deep(pre),
+.edit-example :deep(pre code),
+.edit-example :deep(pre .line) {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+</style>
+
 <!--
-原稿のinternal/kiro/snapshot_test.goの編集例から、最初のeditオブジェクトをそのまま抜粋。
-pathとeditsの外側、および2件目のeditは省略している。
+LLMによる編集ツールの呼び出しを、空の関数にHelloを表示する処理を追加する例で簡略化。
+newTextの文字列には改行とタブも含まれている。
 この例は、formatterなしで常に規約へ完全準拠することを示すものではない。
 -->
 
 ---
 
-# 改行コードも、newText の一部
+<div class="cost-question">
 
-単一行を複数行に編集するときは、改行・タブも出力に含まれる。
+<p class="comparison">メンテナンスコスト &gt; Formatterの仕事量</p>
 
-<div class="code-tight">
+この状態に近づいているかもしれない
 
-<div class="code-caption">原稿の newText の一部（... は省略）</div>
+</div>
 
-```json
-{
-  "newText": "...}\n\t\t\tfor _, name := range b.Required { ... }"
+- Formatterが不要になるわけではないと思う
+- LLMだけでは、人間が意識しないようにするための<br>「信頼」をカバーしきれないだろう
+- ただ、ツールを取り巻く前提が変化するごとに、<br>その価値も問われ直す必要がある
+- AIも使いつつ、この前提を疑える人が、<br>今後のツールチェーンを作っていく人になるのかも
+
+<style scoped>
+p, li {
+  font-size: 1.5rem;
+  line-height: 1.5;
 }
-```
 
-</div>
+li {
+  margin-bottom: 0.5rem;
+}
 
-<div class="mt-8">
+.cost-question {
+  margin-bottom: 1rem;
+}
 
-`\n` は改行、`\t` はタブ。<br>
-**改行やインデントを含む文字列を、Modelがすでに生成している。**
-
-</div>
-
-<!--
-原稿のinternal/spec/synopsis.goの例。
-長いFormの初期化とfor文の本体は省略し、改行・タブを含む部分を示している。
-原稿のnewTextをそのまま実行できる完全なコードとして示すものではない。
--->
-
----
-
-# token消費量に、どれだけ効くのか
-
-<TwoColumnLayout gap="2.5rem">
-  <template #left>
-    <h2>format</h2>
-    <p>改行・空白・インデントなど、<br>コードの形式を整える。</p>
-  </template>
-  <template #right>
-    <h2>構文の簡約</h2>
-    <p>Linterのように、<br>より簡潔な構文へ置き換える。</p>
-  </template>
-</TwoColumnLayout>
-
-<div class="mt-8">
-
-**formatによるtoken削減には、期待しにくいのではないか。**
-
-</div>
-
-<!--
-原稿では「Linterのように、より簡潔な構文に置き換えることもしない」「token消費量に有効ではない」としている。
-このスライドでは、その問題意識を問いとして提示する。
-token数やコストの削減効果は測定していない。モデル、tokenizer、入力形式によって変わるため、効果が常にゼロだとは断定しない。
--->
+.comparison {
+  color: var(--color-accent);
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+</style>
 
 ---
 layout: center
 class: text-center
-title: 行数やASTを元にした改行判断で十分ではないか？
+title: See you later 👋
 ---
 
-<GradientHeading>
-  行数やASTを元にした<br>
-  改行判断で十分ではないか？
-</GradientHeading>
-
-<div class="mt-8">
-
-AIが扱うコードに、どこまでの整形が必要なのか。
-
-</div>
-
-<!--
-原稿にある、行数やASTを元にした改行判断に絞れるのではないか、という仮説。
-ASTはコードの構文を木構造で表したもの。
-十分だと検証済みの設計ではなく、責務を考え直すための問いとして示す。
--->
-
----
-
-# format を、Lintとして扱う
-
-<div class="mt-8">
-
-1. **format自体は、AIが行う**
-2. **形式の違反を、機械的に検知する**
-3. **code formatterには、コードを編集させない**
-
-</div>
-
-<!--
-原稿の提案。
-「format自体はAIで可能だろう。それを機械的に検知できればいいはず」という考えを、役割の分担として示す。
-AIによる整形の信頼性や、検査する仕組みの保守コストは、この原稿では検証していない。
--->
-
----
-
-# 「検知」と「編集」の責務を分ける
-
-<TwoColumnLayout gap="3rem">
-  <template #left>
-    <h2>機械的な検査</h2>
-    <p>formatの違反を検知する。</p>
-    <p><strong>コードを編集しない。</strong></p>
-  </template>
-  <template #right>
-    <h2>AI</h2>
-    <p>検査結果を受けて、<br>コードを整形する。</p>
-    <p><strong>編集を担当する。</strong></p>
-  </template>
-</TwoColumnLayout>
-
-<!--
-一つ前の提案を、担当する仕事の違いとして図式化したスライド。
-実装済みのシステムを説明しているわけではない。
-「書き換えをしない」という変更だけで、メンテナンスコストが必ず下がると示したものでもない。
--->
-
----
-layout: center
-class: text-center
-title: 責務を変えて、より持続可能にする
----
-
-<GradientHeading>
-  責務を変えて、<br>
-  より持続可能にする
-</GradientHeading>
-
-<div class="mt-8">
-
-これからの需要に、今の開発・保守コストは割に合うのか。<br>
-**私は、割に合わなくなると考えている。**
-
-</div>
-
-<!--
-原稿の結論は「合わない。責務を変えて、より持続可能にする必要があるだろう」。
-人間の意思決定コストを減らす価値、追従のコスト、AIによる編集を踏まえた発表者の見解として締める。
--->
-
----
-
-# 原稿・参考資料
-
-<div class="text-base leading-relaxed">
-
-**原稿**
-
-<a href="https://scrapbox.io/sorafujitani/AI時代の_code_formatter_について考える">https://scrapbox.io/sorafujitani/AI時代の_code_formatter_について考える</a>
-
-<div class="mt-6"></div>
-
-**Why Prettier?**
-
-<a href="https://prettier.io/docs/why-prettier.html">https://prettier.io/docs/why-prettier.html</a>
-
-<div class="mt-6"></div>
-
-**スライドのベース**
-
-<a href="https://github.com/sorafujitani/slidev-code-formatter-maintenability-and-next-role">https://github.com/sorafujitani/<br>slidev-code-formatter-maintenability-and-next-role</a>
-
-</div>
-
-<!--
-原稿と公式の引用元、スライドのベース。
-原稿・引用元の確認日: 2026-10-19。
--->
-
----
-layout: center
-class: text-center
-title: ありがとうございました
----
-
-<GradientHeading>ありがとうございました</GradientHeading>
-
-<div class="mt-8">
-
-<SocialLinks github="sorafujitani" x="sorafujitani" />
-
-</div>
+<GradientHeading>See you later <span style="-webkit-text-fill-color: initial">👋</span></GradientHeading>
 
 <!--
 質疑応答。

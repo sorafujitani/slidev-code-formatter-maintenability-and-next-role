@@ -259,6 +259,8 @@ SNS リンク集を表示するコンポーネント。
 
 プロフィールページを少ない記述で作成するコンポーネント。
 
+画像に `/images/...` を指定すると、公開先のベースパスを自動で付けます。外部URLはそのまま使用します。
+
 #### Props
 
 | Prop | Type | Default | 説明 |
@@ -268,11 +270,12 @@ SNS リンク集を表示するコンポーネント。
 | x | String | '' | X ユーザー名 |
 | github | String | '' | GitHub ユーザー名 |
 | website | String | '' | Web サイト URL |
-| avatar | String | '' | 上部のプロフィール画像 URL |
-| secondaryImage | String | '' | 下部の補助画像 URL |
+| avatar | String | '' | プロフィール画像 URL |
+| secondaryImage | String | '' | 右カラムの補助画像 URL |
 | items | Array | [] | 任意のプロフィール項目。`{ icon, label, href }` |
 | leftOffset | String | '5.5rem' | 左カラムの縦位置 |
 | avatarWidth | String | '280px' | プロフィール画像幅 |
+| avatarPosition | 'right' / 'left-bottom' | 'right' | `left-bottom` で自己紹介文の下へ移し、右カラムを広げる |
 | secondaryImageWidth | String | '180px' | 補助画像幅 |
 
 #### 使用例
@@ -300,6 +303,8 @@ SNS リンク集を表示するコンポーネント。
 ### 7. CenteredImage
 
 画像を中央配置し、シャドウ効果を追加するコンポーネント。
+
+`/images/...` 形式の画像URLには、公開先のベースパスを自動で付けます。外部URLはそのまま使用します。
 
 #### Props
 

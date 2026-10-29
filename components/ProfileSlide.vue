@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { resolveAssetUrl } from '@slidev/client/layoutHelper.ts'
 import { computed } from 'vue'
 
 interface ProfileItem {
@@ -20,6 +21,7 @@ interface Props {
   nameColor?: string
   leftOffset?: string
   avatarWidth?: string
+  avatarPosition?: 'right' | 'left-bottom'
   secondaryImageWidth?: string
   items?: ProfileItem[]
 }
@@ -30,6 +32,7 @@ const props = withDefaults(defineProps<Props>(), {
   nameColor: 'var(--color-accent)',
   leftOffset: '5.5rem',
   avatarWidth: '280px',
+  avatarPosition: 'right',
   secondaryImageWidth: '180px',
   items: () => [],
 })
@@ -60,7 +63,7 @@ const profileItems = computed(() => [
 </script>
 
 <template>
-  <div class="profile-slide">
+  <div class="profile-slide" :class="{ 'profile-avatar-left': avatarPosition === 'left-bottom' }">
     <section class="profile-left" :style="{ paddingTop: leftOffset }">
       <h1 class="profile-name" :style="{ color: nameColor }">
         {{ name }}
@@ -85,20 +88,28 @@ const profileItems = computed(() => [
           <span>{{ item.label }}</span>
         </a>
       </div>
+
+      <img
+        v-if="avatar && avatarPosition === 'left-bottom'"
+        class="profile-avatar profile-avatar-below"
+        :src="resolveAssetUrl(avatar)"
+        :alt="avatarAlt"
+        :style="{ width: avatarWidth }"
+      >
     </section>
 
-    <section v-if="avatar || secondaryImage" class="profile-images">
+    <section v-if="(avatar && avatarPosition === 'right') || secondaryImage" class="profile-images">
       <img
-        v-if="avatar"
+        v-if="avatar && avatarPosition === 'right'"
         class="profile-avatar"
-        :src="avatar"
+        :src="resolveAssetUrl(avatar)"
         :alt="avatarAlt"
         :style="{ width: avatarWidth }"
       >
       <img
         v-if="secondaryImage"
         class="profile-secondary-image"
-        :src="secondaryImage"
+        :src="resolveAssetUrl(secondaryImage)"
         :alt="secondaryImageAlt"
         :style="{ width: secondaryImageWidth }"
       >
@@ -117,6 +128,15 @@ const profileItems = computed(() => [
 
 .profile-left {
   min-width: 0;
+}
+
+.profile-avatar-left {
+  grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+  gap: 2rem;
+}
+
+.profile-avatar-below {
+  margin-top: 2rem;
 }
 
 .profile-name {
@@ -143,6 +163,14 @@ const profileItems = computed(() => [
   font-weight: 650;
   line-height: 1.35;
   text-decoration: none;
+}
+
+.profile-avatar-left .profile-name {
+  font-size: clamp(2rem, 3.6vw, 2.8rem);
+}
+
+.profile-avatar-left .profile-item {
+  font-size: clamp(1.15rem, 1.9vw, 1.3rem);
 }
 
 .profile-item[href]:hover {

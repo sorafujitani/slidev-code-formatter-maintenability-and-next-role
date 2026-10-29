@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { resolveAssetUrl } from '@slidev/client/layoutHelper.ts'
+
 interface Props {
   src: string
   alt?: string
@@ -18,7 +20,7 @@ const props = withDefaults(defineProps<Props>(), {
   <div class="centered-image-container">
     <div class="flex justify-center">
       <img
-        :src="src"
+        :src="resolveAssetUrl(src)"
         :alt="alt"
         :class="[`rounded-${rounded}`, 'shadow-lg']"
         :style="{ width: width, maxWidth: '100%' }"
