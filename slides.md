@@ -71,7 +71,7 @@ class: text-center
   width="640px"
 />
 
-<div class="mt-6 text-2xl font-bold" style="color: var(--color-accent)">code formatterって今のままでいいのか？と思っている</div>
+<div class="mt-6 text-2xl font-bold gradient-heading">code formatterって今のままでいいのか？と思っている</div>
 
 ---
 
@@ -103,8 +103,8 @@ class: text-left
 title: ツールの価値はメンテナンスコストに見合うかどうか
 ---
 
-- code formatterは、<br><strong style="color: var(--color-accent)">メンテナンスコストが高い</strong>ツールだと考えている
-- コードを見ることが減っていくであろうこれから、<br><strong style="color: var(--color-accent)">ツールの価値はメンテナンスコストに見合うかどうか</strong>
+- code formatterは、<br><strong class="gradient-heading">メンテナンスコストが高い</strong>ツールだと考えている
+- コードを見ることが減っていくであろうこれから、<br><strong class="gradient-heading">ツールの価値はメンテナンスコストに見合うかどうか</strong>
 
 <style scoped>
 li {
@@ -265,7 +265,7 @@ newTextの文字列には改行とタブも含まれている。
 
 <div class="cost-question">
 
-<p class="comparison">メンテナンスコスト &gt; formatterの仕事量</p>
+<p class="comparison gradient-heading">メンテナンスコスト &gt; formatterの仕事量</p>
 
 この状態に近づいているかもしれない
 
@@ -291,7 +291,6 @@ li {
 }
 
 .comparison {
-  color: var(--color-accent);
   font-size: 1.75rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
