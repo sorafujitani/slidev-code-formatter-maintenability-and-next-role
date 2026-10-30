@@ -19,7 +19,7 @@ fonts:
 ---
 
 <CoverSlide
-  title="code formatter maintenability and next role?"
+  title="<span style='white-space: nowrap'>code formatter maintenability</span><br>and next role"
   subtitle=""
   event="俺の勉強会#8"
   author="fujitani sora"
@@ -63,7 +63,7 @@ layout: default
 class: text-center
 ---
 
-### Linter, Formatterをよく開発している
+### linter, formatterをよく開発している
 
 <CenteredImage
   src="/images/github-contributions.png"
@@ -71,7 +71,7 @@ class: text-center
   width="640px"
 />
 
-<div class="mt-6 text-2xl font-bold" style="color: var(--color-accent)">Code Formatterって今のままでいいのか？と思っている</div>
+<div class="mt-6 text-2xl font-bold" style="color: var(--color-accent)">code formatterって今のままでいいのか？と思っている</div>
 
 ---
 
@@ -103,7 +103,7 @@ class: text-left
 title: ツールの価値はメンテナンスコストに見合うかどうか
 ---
 
-- Code Formatterは、<br><strong style="color: var(--color-accent)">メンテナンスコストが高い</strong>ツールだと考えている
+- code formatterは、<br><strong style="color: var(--color-accent)">メンテナンスコストが高い</strong>ツールだと考えている
 - コードを見ることが減っていくであろうこれから、<br><strong style="color: var(--color-accent)">ツールの価値はメンテナンスコストに見合うかどうか</strong>
 
 <style scoped>
@@ -125,7 +125,7 @@ li {
 **コードを書き換えるリスクのあるツール。**
 
 - 不具合によって、ユーザーのコードを暗黙的に壊し得る。
-- Git hookで自動実行されると、<br>不具合による変更に気づきにくいこともある。
+- git hookで自動実行されると、<br>不具合による変更に気づきにくいこともある。
 
 </div>
 
@@ -171,7 +171,7 @@ li {
 | --- | --- |
 | parser | 仕様変更、モダンなparserへの移行 |
 | プログラミング言語 | 新構文の追加・変更 |
-| Framework | latest、場合によってはnightlyへの対応 |
+| framework | latest、場合によってはnightlyへの対応 |
 | formatter自体 | 品質、パフォーマンス、optionの改善 |
 
 </div>
@@ -265,13 +265,13 @@ newTextの文字列には改行とタブも含まれている。
 
 <div class="cost-question">
 
-<p class="comparison">メンテナンスコスト &gt; Formatterの仕事量</p>
+<p class="comparison">メンテナンスコスト &gt; formatterの仕事量</p>
 
 この状態に近づいているかもしれない
 
 </div>
 
-- Formatterが不要になるわけではないと思う
+- formatterが不要になるわけではないと思う
 - LLMだけでは、人間が意識しないようにするための<br>「信頼」をカバーしきれないだろう
 - ただ、ツールを取り巻く前提が変化するごとに、<br>その価値も問われ直す必要がある
 - AIも使いつつ、この前提を疑える人が、<br>今後のツールチェーンを作っていく人になるのかも

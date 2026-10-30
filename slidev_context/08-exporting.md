@@ -150,10 +150,13 @@ PDF export 後は、最低限以下を確認します。
 
 ### Color Stability
 
-PDF export で色が変わる背景には `oklch(... / alpha)` を避けます。
-特に cover の透過グラデーションは `rgb(... / alpha)` の方が安定しやすいです。
+RGB指定でも、透過を重ねたグラデーションはPDFの `ShadingType: 1` として出力されることがあります。これに未対応のPDF.jsではピンクに置き換わり、Popplerでは正常に表示されるため、Popplerだけの確認では見落とします。
 
-`CoverSlide background="cyanTop"` は、この前提で実装されています。
+`CoverSlide background="cyanTop"` は、Slidev の `useNav().isPrintMode` で不透明なRGB線形グラデーションに切り替えます。`GradientHeading` も出力時は水色の単色にし、PDFビューアーによる文字のマスク描画の差を避けます。
+
+Slidev 52.8.0 のexportは `?print=true` を付けて開き、`media: "screen"` を指定します。`@media print` だけでは切り替わらないため、コンポーネントに `isPrintMode` に応じたクラスを付けています。
+
+背景やグラデーションを変更した場合は、PDF.jsとPopplerで表紙を確認します。macOS向けにはCore Graphicsでも文字が欠けないか確認してください。
 
 ### Warning and Failure
 

@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { useNav } from '@slidev/client'
+
+const { isPrintMode } = useNav()
+
 interface Props {
   tag?: 'h1' | 'h2' | 'h3'
   animated?: boolean
@@ -14,12 +18,18 @@ const props = withDefaults(defineProps<Props>(), {
   <component
     :is="tag"
     class="gradient-heading"
-    :class="{ 'animated-shadow': animated }"
+    :class="{ 'animated-shadow': animated, 'gradient-heading-print': isPrintMode }"
   >
     <slot />
   </component>
 </template>
 
 <style scoped>
-/* スタイルは既に style.css に定義されているため、追加の定義は不要 */
+/* PDFビューアーによる文字のマスク描画の差を避ける。 */
+.gradient-heading-print {
+  background: none !important;
+  color: rgb(0 155 206);
+  -webkit-text-fill-color: currentColor;
+  animation: none;
+}
 </style>

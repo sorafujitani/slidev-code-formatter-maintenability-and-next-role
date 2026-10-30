@@ -53,6 +53,8 @@
 
 グラデーション効果を持つ見出しコンポーネント。
 
+PDF出力時は水色の単色文字に切り替え、文字のマスク描画による表示崩れを避けます。
+
 #### Props
 
 | Prop | Type | Default | 説明 |
@@ -185,20 +187,20 @@ SNS リンク集を表示するコンポーネント。
 
 | Prop | Type | Default | 説明 |
 |------|------|---------|------|
-| title | String | '' | タイトル |
+| title | String | '' | タイトル。`<br>` で改行位置を指定可能 |
 | subtitle | String | '' | サブタイトル |
 | event | String | '' | イベント名 |
 | author | String | '' | 著者名 |
 | social | Object | {} | SNS情報 { github, x, twitter, linkedin, website } |
 | gradient | Boolean | true | グラデーション見出しを使用 |
-| background | 'plain' \| 'cyanTop' | 'cyanTop' | 表紙背景。`cyanTop` は PDF export 向けに rgb 透過を使用 |
+| background | 'plain' \| 'cyanTop' | 'cyanTop' | 表紙背景。PDF出力時は不透明なRGB線形グラデーションを使用 |
 | compact | Boolean | false | 長い LT タイトル向けにタイトルをさらに控えめにする |
 
 #### デザインの特徴
 
-- **タイトル**: 長い LT タイトル前提で控えめに表示（`clamp(1.4rem, 2.7vw, 2rem)`）
+- **タイトル**: 通常は `3rem`。Slidevのスライド全体の拡大縮小に合わせ、画面とPDFで文字サイズをそろえる
 - **イベント名/著者名**: `event / author` の順で中央下に配置
-- **背景**: `cyanTop` では上部に水色グラデーションを表示。PDF export での変色を避けるため `rgb(... / alpha)` を使用
+- **背景**: `cyanTop` では上部に水色グラデーションを表示。PDF出力時は不透明なRGB線形グラデーションに切り替え、PDF.jsの未対応描画によるピンクへの変色を避ける
 - **SNSアイコン**: 右下に自動配置
 
 #### 使用例

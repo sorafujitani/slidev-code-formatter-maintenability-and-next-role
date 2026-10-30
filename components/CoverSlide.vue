@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useNav } from '@slidev/client'
 import GradientHeading from './GradientHeading.vue'
 import SocialLinks from './SocialLinks.vue'
+
+const { isPrintMode } = useNav()
 
 interface Props {
   title: string
@@ -32,6 +35,7 @@ const props = withDefaults(defineProps<Props>(), {
     :class="[
       background === 'cyanTop' ? 'cover-cyan-top' : 'cover-plain',
       compact ? 'cover-compact' : '',
+      isPrintMode ? 'cover-print' : '',
     ]"
   >
     <div class="cover-content">
@@ -90,6 +94,17 @@ const props = withDefaults(defineProps<Props>(), {
       var(--color-bg) 100%
     ) !important;
 }
+
+/* Slidevのexportはscreen mediaを使うため、isPrintModeで切り替える。 */
+.slidev-page:has(.cover-slide.cover-cyan-top.cover-print) {
+  background: linear-gradient(
+    180deg,
+    rgb(178 234 241) 0%,
+    rgb(224 246 250) 28%,
+    rgb(244 245 247) 58%,
+    rgb(244 245 247) 100%
+  ) !important;
+}
 </style>
 
 <style scoped>
@@ -109,7 +124,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 .cover-title {
   margin-bottom: 0;
-  font-size: clamp(2.6rem, 5.4vw, 3.6rem) !important;
+  font-size: 3rem !important;
   font-weight: 800;
   line-height: 1.16;
   letter-spacing: -0.02em;

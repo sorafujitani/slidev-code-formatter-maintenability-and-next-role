@@ -1,5 +1,7 @@
 # Slidev Common Template
 
+[公開スライド: code formatter maintenability and next role](https://sorafujitani.github.io/slidev-code-formatter-maintenability-and-next-role/)
+
 > デザインシステムを備えた、再利用可能なSlidevプレゼンテーションテンプレート
 
 ## 📖 概要

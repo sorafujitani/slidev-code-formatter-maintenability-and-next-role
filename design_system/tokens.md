@@ -174,7 +174,7 @@ Tailwind CSS の標準スケールを使用:
 
 ### 表紙背景
 
-`CoverSlide background="cyanTop"` は、PDF export での色変化を避けるため `oklch(... / alpha)` ではなく `rgb(... / alpha)` の透過グラデーションを使います。
+`CoverSlide background="cyanTop"` は、画面では `rgb(... / alpha)` の透過グラデーションを使います。
 
 ```css
 background:
@@ -189,6 +189,19 @@ background:
     var(--color-bg) 100%
   );
 ```
+
+PDF出力時は Slidev の `useNav().isPrintMode` で、透過を重ねないRGB線形グラデーションに切り替えます。画面用の描画は、一部バージョンのPDF.jsが未対応の `ShadingType: 1` として出力されることがあるためです。
+
+```css
+background: linear-gradient(180deg,
+  rgb(178 234 241) 0%,
+  rgb(224 246 250) 28%,
+  rgb(244 245 247) 58%,
+  rgb(244 245 247) 100%
+);
+```
+
+`GradientHeading` もPDF出力時は文字のグラデーションを `rgb(0 155 206)` の単色に切り替え、文字のマスク描画への依存を避けます。
 
 ### よく使うスペーシングパターン
 
