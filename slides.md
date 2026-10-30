@@ -68,10 +68,8 @@ class: text-center
 <CenteredImage
   src="/images/github-contributions.png"
   alt="2025年10月以降に公開PRやIssueで関わったGitHubリポジトリの一覧"
-  width="640px"
+  width="800px"
 />
-
-<div class="mt-6 text-2xl font-bold gradient-heading">code formatterって今のままでいいのか？と思っている</div>
 
 ---
 
@@ -165,7 +163,7 @@ li {
 
 <div class="maintenance-label">メンテナンスコストが高い理由 · 2/2</div>
 
-# 追従する対象が多い
+# 変更要求の頻度が高い
 
 | 対象 | 求められる対応 |
 | --- | --- |
